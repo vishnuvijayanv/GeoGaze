@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="https://webstockreview.net/images/clipart-world-climate-change-16.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>GeoGaze</title>
+</head>
+<body>
+    <div class="container  w-100 ">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="searchbar mt-3">
+                            <input class="search_input" id="inputname" type="text"  placeholder="Search...">
+                            <a href="#" onclick="searcht()" class="search_icon"><i class="fas fa-search"></i></a>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="main w-100 mt-3  rounded">
+                           <div class="alldata">
+                                <img class="logo " src="./images/black white Thunder logo.png" alt="">
+                                <h1 class="place pt-2 ms-5 "></h1>
+                                <div id="result"></div>
+                                <div class="p-3 main-txt">
+                                    <h1 class="temp ms-4 "></h1>
+                                    <p class="feels ms-4 "></p>
+                                    
+                                </div>
+                           </div>
+                           <div class="ps-5">
+                            <p class="error"></p>
+                            
+                         </div>
+                            
+                        </div>
+                        
+                        <!--  -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class=" detail  w-100 mt-4" >
+                            <ul class="list-group list-group-flush bg-transparent  ">
+                                <li class="list-group-item bg-transparent  "><h4>Date&Time</h4><span  id="dt"></span></li>
+                                <li class="list-group-item bg-transparent  "><h4>Pressure</h4><span id="Pressure"></span></li>
+                                <li class="list-group-item bg-transparent  "><h4>Description</h4><span id="Description"></span></li>
+                              </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="detail detail1 w-100 mt-4"    >
+                            <ul class="list-group list-group-flush bg-transparent ">
+                                <li class="list-group-item bg-transparent  "><h4>Country</h4><span id="Country"></span></li>
+                                <li class="list-group-item bg-transparent "><h4>Humidity</h4><span id="Humidity"></span></li>
+                                <li class="list-group-item bg-transparent  "><h4>Wind</h4><span id="Wind"></span></li>
+                              </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="more ms-2 mt-3" >
+                        <div class=" buttons"> 
+                            <button class="btn btn-primary bg-light text-dark m-3" onclick=" location.reload()" type="button"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                        <hr>
+                        <h1>
+                            <h2 style="color:#00649A ;">PREVIOUS</h2>
+                        </h1>
+                        <div class="previous">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    const searcht = async()=>{
+    let svalue = inputname.value
+    console.log(svalue);
+    if (svalue) {
+        // result.innerHTML = "";
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${svalue}&current.dt&appid=629d4ba6d8c10c425fb2ddbe01e9f45b`)
+        if(response.status>=200&& response.status<=299){
+      response.json().then((data)=>{
+        // console.log(data);
+       let place=data.name
+       console.log(place);
+       let temp=data.main.temp
+       var ctemp=eval(temp-273.15).toFixed(1)
+       console.log(ctemp);
+       let feels_like=eval(data.main.feels_like-273.15).toFixed(1)
+       console.log(feels_like);
+       var img=data.weather[0].icon
+       console.log(img);
+       var pressure=data.main.pressure
+       console.log(Pressure);
+       var des=data.weather[0].description
+       console.log(des);
+       var Country =data.sys.country
+       console.log(Country);
+       var humidity =data.main.humidity
+       console.log(humidity);
+       var Wind=data.wind.speed
+       console.log(Wind);
+
+       document.querySelector(".temp").innerHTML=`<i class="fa-solid fa-temperature-three-quarters"></i>${ctemp}℃`
+       document.querySelector(".feels").innerHTML=`Feels like${feels_like}℃`
+       document.querySelector(".place").innerHTML=`<i class="fa-solid fa-location-dot"></i>${place}`
+       document.querySelector("#result").innerHTML=`<img class="cloud" src="http://openweathermap.org/img/w/${img}.png" width="50%" alt="">`
+       document.querySelector("#Pressure").innerHTML=`${pressure}hPa`
+       document.querySelector("#Description").innerHTML=`${des}`
+       document.querySelector("#Country").innerHTML=`${Country}`
+       document.querySelector("#Humidity").innerHTML=`${humidity} %`
+       document.querySelector("#Wind").innerHTML=`${Wind}m/s`
+
+       
+       // The provided timestamp
+       const timestamp = data.dt;
+       // Create a Date object from the timestamp (in milliseconds, so multiply by 1000)
+       const date = new Date(timestamp * 1000);
+       // Get individual date and time components
+       const year = date.getFullYear();
+       const month = date.getMonth() + 1; // Months are 0-based, so add 1
+       const day = date.getDate();
+       const hours = date.getHours();
+       const minutes = date.getMinutes();
+       const seconds = date.getSeconds();
+
+       // Create a formatted date and time string
+       const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+       // Display the result
+       document.querySelector("#dt").innerHTML=`${formattedDate}`
+
+    const datas = {
+        name: place,
+        temperature: ctemp,
+        image: img
+    };
+
+    // Save the data to local storage
+    localStorage.setItem(place, JSON.stringify(datas));
+    // a=localStorage.getItem(place, JSON.parse(datas));
+    // console.log(a.parse);
+  console.log( JSON.parse( localStorage.getItem(place)));
+  console.log(datas.name);
+
+
+  document.querySelector(".previous").innerHTML+=`<div class="history">
+    <h3 id="H-title" class="m-5">${datas.name}</h3>
+                            <h1 id="H-temp" class=" ms-5"><i class="fa-solid fa-temperature-three-quarters"></i>${datas.temperature}℃</h1>
+                            <img src="http://openweathermap.org/img/w/${datas.image}.png" width="120px" id="H-img" alt=""></div>`
+            })
+        }
+        else{
+            document.querySelector(".alldata").innerHTML=``
+            document.querySelector(".detail").innerHTML=``
+            document.querySelector(".detail1").innerHTML=``
+
+        document.querySelector(".error").innerHTML=`&#128542 It appears that you have entered an incorrect city name, or the name does not exist in our system. Please try again with another city name.<br> Thank you for your understanding. `
+    }
+    }
+    else{
+        alert('Please enter a valid input')
+    }
+    
+
+}
+
+</script>
+</html>

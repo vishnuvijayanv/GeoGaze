@@ -1,0 +1,125 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+.container{
+    background-image: linear-gradient(315deg, #00649A 0%, #00FFFF 74%);
+    border: 5px solid black;
+  
+    border-radius: 10px;
+    padding: 10px;
+
+}
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    border: 0;
+    background-color: black;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 80%;
+    
+    }
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+
+.main{
+    height: 380px;
+    background-color: black;
+    background-size: cover;
+}
+.main-txt{
+    color:  #00649A ;
+}
+.error{
+    font-size: 20px;
+    font-family: 'Tilt Neon', sans-serif;
+    color:  #00649A ;
+    text-align: justify;
+    
+}
+
+.logo{
+    float: right;
+    width: 30%;
+    height: 90%;
+    
+}
+.cloud{
+    width: 200px;
+    height: 200px;
+}
+.temp{
+    font-weight: bolder;
+    font-family: 'Tilt Neon', sans-serif;
+    color: white;
+}
+.feels{
+    font-family: 'Tilt Neon', sans-serif;
+    color: white;
+}
+.place{
+    font-family: 'Tilt Neon', sans-serif;
+    color:   #00649A ;
+    font-size: 50px;
+
+}
+.more{
+    width: 95%;
+    background-color:black;
+    height: 700px;
+    overflow-y: auto;
+    border-radius: 10px;
+    font-family: 'Tilt Neon', sans-serif;
+    /* background-image: url("https://i.pinimg.com/236x/90/28/fe/9028fe0fbe0917199b23db6d57b09170.jpg"); */
+    background-size: cover;
+    
+}
+.list-group-item{
+    color:   #00649A ;
+
+}
+span{
+    color: white;
+}
+.history{
+    width: 100%;
+    height: 150px;
+    background-image: linear-gradient(315deg, #00649A 0%, #00FFFF 74%);
+    border-radius: 10px;
+    /* margin-bottom: 15px; */
+    color: black;
+}
+#H-img{
+    float: right;
+    margin-top: -125px;
+    margin-right: 10px;
+    height: 130px;
+    border-radius: 10px;
+}
+
+.detail{
+    border-radius: 10px;
+    height: 225px;
+    background-color: black;
+    color: white;
+    /* background-image: linear-gradient(315deg, #fbfbfb 0%, #a7f432 74%);       */
+      /* background-image: url("https://4.bp.blogspot.com/-FMjtLLwfwb4/XDmzvGx7rjI/AAAAAAAACBc/OI4NOUpK4agZHxIaL0C267qu4CtwmjrtACLcBGAs/w1200-h630-p-k-no-nu/preview.jpg"); */
+    font-family: 'Tilt Neon', sans-serif;
+}
